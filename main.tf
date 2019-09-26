@@ -34,7 +34,7 @@ resource "aws_security_group" "instance" {
   }
 }
 
-data "terraform_remote_state" "db" {
+data "terraform_remote_state" "remote" {
   backend = "s3"
 
   config = {

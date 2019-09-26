@@ -1,3 +1,14 @@
+terraform {
+  backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "berchevorg-free"
+
+    workspaces {
+      name = "remote-state"
+    }
+  }
+}
+
 provider "aws" {
   region = "us-east-1"
 }

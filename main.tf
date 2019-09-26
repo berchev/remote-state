@@ -1,13 +1,11 @@
 terraform {
-  backend "remote" {
-    hostname = "app.terraform.io"
-    organization = "berchevorg-free"
-
-    workspaces {
-      name = "remote-state"
-    }
+  backend "s3" {
+    bucket = "berchev-terraform-book-state"
+    key    = "stage/data-stores/mysql/terraform.tfstate"
+    region = "us-east-1"
   }
 }
+
 
 provider "aws" {
   region = "us-east-1"
@@ -42,15 +40,5 @@ resource "aws_security_group" "instance" {
     to_port = 22
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-data "terraform_remote_state" "remote" {
-  backend = "s3"
-
-  config = {
-    bucket = "berchev-terraform-book-state"
-    key    = "stage/data-stores/mysql/terraform.tfstate"
-    region = "us-east-1"
   }
 }

@@ -39,7 +39,7 @@ data "terraform_remote_state" "remote" {
 
   config = {
     bucket = "berchev-terraform-book-state"
-    key    = "remote_state/terraform.tfstate"
+    key    = "stage/data-stores/mysql/terraform.tfstate"
     region = "us-east-1"
   }
 }
